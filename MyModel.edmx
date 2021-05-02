@@ -1,0 +1,108 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="MyDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="CorrectAnswers">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+          </Key>
+          <Property Name="QuestionId" Type="int" Nullable="false" />
+          <Property Name="Question" Type="nvarchar(max)" />
+          <Property Name="Answer" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="QuestionAnswerList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Questions" Type="nvarchar(max)" />
+          <Property Name="Option1" Type="nvarchar(max)" />
+          <Property Name="Option2" Type="nvarchar(max)" />
+          <Property Name="Option3" Type="nvarchar(max)" />
+          <Property Name="Option4" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityContainer Name="MyDatabaseModelStoreContainer">
+          <EntitySet Name="CorrectAnswers" EntityType="Self.CorrectAnswers" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="QuestionAnswerList" EntityType="Self.QuestionAnswerList" Schema="dbo" store:Type="Tables" />
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="MyDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="CorrectAnswer">
+          <Key>
+            <PropertyRef Name="QuestionId" />
+          </Key>
+          <Property Name="QuestionId" Type="Int32" Nullable="false" />
+          <Property Name="Question" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Answer" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityContainer Name="MyDatabaseEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="CorrectAnswers" EntityType="Self.CorrectAnswer" />
+          <EntitySet Name="QuestionAnswerLists" EntityType="MyDatabaseModel.QuestionAnswerList" />
+        </EntityContainer>
+        <EntityType Name="QuestionAnswerList">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Questions" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Option1" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Option2" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Option3" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Option4" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="MyDatabaseModelStoreContainer" CdmEntityContainer="MyDatabaseEntities">
+          <EntitySetMapping Name="CorrectAnswers">
+            <EntityTypeMapping TypeName="MyDatabaseModel.CorrectAnswer">
+              <MappingFragment StoreEntitySet="CorrectAnswers">
+                <ScalarProperty Name="QuestionId" ColumnName="QuestionId" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionAnswerLists">
+            <EntityTypeMapping TypeName="MyDatabaseModel.QuestionAnswerList">
+              <MappingFragment StoreEntitySet="QuestionAnswerList">
+                <ScalarProperty Name="Option4" ColumnName="Option4" />
+                <ScalarProperty Name="Option3" ColumnName="Option3" />
+                <ScalarProperty Name="Option2" ColumnName="Option2" />
+                <ScalarProperty Name="Option1" ColumnName="Option1" />
+                <ScalarProperty Name="Questions" ColumnName="Questions" />
+                <ScalarProperty Name="Id" ColumnName="Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
