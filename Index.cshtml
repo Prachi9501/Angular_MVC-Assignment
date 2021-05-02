@@ -1,0 +1,26 @@
+﻿
+
+<table id="example" class="table table-condensed table-bordered table-striped" style="margin-top: 20px;">
+    <thead>
+        <tr>
+            <th>Question</th>
+            <th>Correct Answer</th>
+        </tr>
+    </thead>
+</table>
+
+
+@section scripts
+{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#example').DataTable({
+                ajax: "api/Answer",
+                columns: [
+                    { "data": "Question" },
+                    { "data": "Answer" }
+                ]
+            });
+        });
+    </script>
+}
